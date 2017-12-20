@@ -3,38 +3,36 @@ jobs:
   setEnv1:
     steps:
       - checkout
+      -run:
+          name: Make dirs
+          command: |
+            mkdir app
+            mkdir admin
       - run:
-          name: Set variable to app
-          command: echo 'export TEST_ENV="app"' >> $BASH_ENV
-
-  setEnv2:
-    steps:
-      - checkout
+          name: Go to folder 1
+          command: |
+            cd app
+            echo "Hello from app"
       - run:
-          name: Set variable to app
-          command: echo 'export TEST_ENV="admin"' >> $BASH_ENV
-
-  build:
-    steps:
-      - checkout
-      - run:
-          name: Build
-          command: echo ${TEST_ENV}
+          name: Go to folder 2
+          command: |
+            cd admin
+            echo "Hello from app"
 
 
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - setEnv1:
-          context: org-global
-      - setEnv2:
-          context: admin
-      - build:
-          context: app
-          requires:
-            - setEnv1
-      - build:
-          context: admin
-          requires:
-            - setEnv2
+# workflows:
+#   version: 2
+#   build_and_test:
+#     jobs:
+#       - setEnv1:
+#           context: org-global
+#       - setEnv2:
+#           context: admin
+#       - build:
+#           context: app
+#           requires:
+#             - setEnv1
+#       - build:
+#           context: admin
+#           requires:
+#             - setEnv2
