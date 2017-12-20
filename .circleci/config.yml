@@ -3,7 +3,7 @@ jobs:
   setEnv1:
     steps:
       - checkout
-      -run:
+      - run:
           name: Make dirs
           command: |
             mkdir app
@@ -17,7 +17,7 @@ jobs:
           name: Go to folder 2
           command: |
             cd admin
-            echo "Hello from app"
+            echo "Hello from admin"
 
 
 # workflows:
