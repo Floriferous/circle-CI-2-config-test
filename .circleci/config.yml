@@ -44,6 +44,6 @@ workflows:
     jobs:
       - prepare
       - run
-      - deploy
+      - deploy:
           requires:
             - run
