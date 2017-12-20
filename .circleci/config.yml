@@ -27,7 +27,7 @@ workflows:
   build_and_test:
     jobs:
       - setEnv1:
-          context: app
+          context: org-global
       - setEnv2:
           context: admin
       - build:
