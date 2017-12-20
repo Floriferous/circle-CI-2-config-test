@@ -12,3 +12,38 @@ jobs:
       - run:
           name: Log stuff
           command: echo "Hello world!"
+  run:
+    working_directory: ~/app
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
+        environment:
+          LANG: C.UTF-8
+
+    steps:
+      - checkout
+      - run:
+          name: Log More stuff
+          command: echo "Hello world again!"
+
+  deploy:
+    working_directory: ~/app
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
+        environment:
+          LANG: C.UTF-8
+
+    steps:
+      - checkout
+      - run:
+          name: Deploy!
+          command: echo "Hello world..."
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - run
+      - deploy
+          requires:
+            - run
