@@ -1,0 +1,22 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/app
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
+        environment:
+          # lang settings required for Meteor's Mongo
+          LANG: C.UTF-8
+          LANGUAGE: C.UTF-8
+          LC_ALL: C.UTF-8
+          LC_NUMERIC: en_US.UTF-8
+          METEOR_BIN_TMP_DIR: /home/circleci/build-temp/
+          METEOR_BIN_TMP_FILE: meteor-bin-temp
+          TZ: "/usr/share/zoneinfo/Europe/Zurich"
+          NODE_ENV: development
+          TOOL_NODE_FLAGS: "--max_old_space_size=4096 --optimize_for_size --gc-interval=100"
+    steps:
+      - checkout
+    run:
+      name: Log stuff
+      command: echo "Hello world!" 
