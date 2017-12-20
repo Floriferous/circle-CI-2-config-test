@@ -31,10 +31,10 @@ workflows:
       - setEnv2:
           context: admin
       - build:
+          context: app
           requires:
             - setEnv1
-          context: app
       - build:
+          context: admin
           requires:
             - setEnv2
-          context: admin
