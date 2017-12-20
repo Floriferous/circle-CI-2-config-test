@@ -16,11 +16,13 @@ jobs:
           command: |
             cd app
             echo "Hello from app"
+            pwd
       - run:
           name: Go to folder 2
           command: |
             cd admin
             echo "Hello from admin"
+            pwd
 
 
 # workflows:
